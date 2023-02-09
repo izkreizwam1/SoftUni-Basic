@@ -1,3 +1,60 @@
+import re
+
+a= input().split('|')
+a=list(map(lambda x : x.split('-'),a))
+e,m=100,100
+
+for i in range(len(a)):
+    q=a[i][0]
+    w=int(a[i][1])
+    if q=='rest':
+        if e+w>=100 :
+            print(f"You gained {100-e} energy.")
+            e=100
+        else:
+            e+=w
+            print(f"You gained {w} energy.")
+        print(f"Current energy: {e}.")
+    elif q=='order':
+        e-=30
+        if e>=0 :
+            m += w
+            print(f"You earned {w} coins.")
+        else:
+            e+=80
+            print("You had to rest!")
+    else:
+        if w<=m:
+            print(f"You bought {q}")
+            m-=w
+        else:
+            print(f"Closed! Cannot afford {q}.")
+            exit()
+print(f'Day completed!\nCoins: {m}\nEnergy: {e}')
+
+# # Hello, France
+# a= input().split('|')
+# b=float(input())
+# a=list(map(lambda x: x.split('->'),a))
+# d={'Clothes':50.00, 'Shoes':35.00, 'Accessories':20.50}
+# k=[]
+# o=0
+# for i in range(len(a)):
+#     t=a[i][0]
+#     p=float(a[i][1])
+#     if p> d[t]: continue
+#     if p<=b:
+#         k.append(str(round(p*1.4,2)))
+#         b-=p
+#         o+=p
+#
+# print(' '.join(k))
+# print(f'Profit: {o*0.4:.2f}')
+# if (o*1.4+b)>=150:
+#     print("Hello, France!")
+# else:
+#     print("Not enough money.")
+
 # Seize the Fire
 # a=input().split('#')
 # b=int(input())
