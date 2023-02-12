@@ -1,54 +1,90 @@
-# 6.	List Manipulator
-l=input().split(' ')
-l=[int(i) for i in l]
-
-def exchange(q,k):
-    r=[]
-    global l
-    r=l
-    k=int(k)
-    if k<0 or k>=len(r):
-        print("Invalid index")
-        return
-    r=r[k+1:]+r[0:k+1]
-    l=r
-    return
-
-def maxeo(r,k):
-    if k=='odd': m=[i for i in r if i%2==1]
-    else: m=[i for i in r if i%2==0]
-    m.sort()
-    if m==[] : return print("No matches")
-    return print(len(r) - r[::-1].index(m[-1])-1)
-def mineo(r,k):
-    if k=='odd': m=[i for i in r if i%2==1]
-    else: m=[i for i in r if i%2==0]
-    m.sort()
-    if m == []: return print("No matches")
-    return print(len(r) - r[::-1].index(m[0])-1)
-
-def first(r,k):
-    k=k.split(' ')
-    if int(k[0])>len(r): return print("Invalid count")
-    if k[1]=='odd': m=[i for i in r if i%2==1]
-    else: m=[i for i in r if i%2==0]
-    return print(m[:int(k[0])])
-
-def last(r,k):
-    k=k.split(' ')
-    if int(k[0])>len(r): return print("Invalid count")
-    if k[1]=='odd': m=[i for i in r if i%2==1]
-    else: m=[i for i in r if i%2==0]
-    return print(m[(int(k[0])-1)::-1])
-
-a=input()
-d={'exchange': exchange, "max": maxeo, "min": mineo, "first": first, "last": last}
-while a!='end':
-    a=a.split(' ',1)
-    d[a[0]](l,a[1])
-    a=input()
-
-print(l)
+# # 6.	List Manipulator
+# l=input().split(' ')
+# l=[int(i) for i in l]
+# #
+# # def last_func(array, command_count, odd_or_even):
+# #     if command_count > len(array) or command_count < 0:
+# #         print("Invalid count")
+# #     else:
+# #         if odd_or_even == "even":
+# #             all_even = []
+# #             last_even = []
+# #             for element in array:
+# #                 if element % 2 == 0:
+# #                     all_even.append(element)
+# #             if len(all_even) > command_count:
+# #                 count = command_count
+# #                 for i in range(1, command_count + 1):
+# #                     last_even.append(all_even[-count])
+# #                     count -= 1
+# #             else:
+# #                 last_even = all_even
+# #             print(last_even)
+# #         elif odd_or_even == "odd":
+# #             all_odd = []
+# #             last_odd = []
+# #             for element in array:
+# #                 if element % 2 != 0:
+# #                     all_odd.append(element)
+# #             if len(all_odd) > command_count:
+# #                 count = command_count
+# #                 for i in range(1, command_count + 1):
+# #                     last_odd.append(all_odd[-count])
+# #                     count -= 1
+# #             else:
+# #                 last_odd = all_odd
+# #             print(last_odd)
+#
+# def exchange(r,k):
+#     r=[]
+#     global l
+#     r=l
+#     k=int(k)
+#     if k>=len(r) or k<0 :
+#         print("Invalid index")
+#         return
+#     else :
+#         r=r[k+1:]+r[:k+1]
+#         l=r
+#         return
+#
+# def maxeo(r,k):
+#     if k=='odd': m=[i for i in r if i%2==1]
+#     else: m=[i for i in r if i%2==0]
+#     m.sort()
+#     if m==[] : return print("No matches")
+#     return print(len(r) - r[::-1].index(m[-1])-1)
+# def mineo(r,k):
+#     if k=='odd': m=[i for i in r if i%2==1]
+#     else: m=[i for i in r if i%2==0]
+#     m.sort()
+#     if m == []: return print("No matches")
+#     return print(len(r) - r[::-1].index(m[0])-1)
+#
+# def first(r,k):
+#     k=k.split(' ')
+#     if int(k[0])>len(r): return print("Invalid count")
+#     if k[1]=='odd': m=[i for i in r if i%2==1]
+#     else: m=[i for i in r if i%2==0]
+#     return print(m[:int(k[0])])
+#
+# def last(r,k):
+#     k=k.split(' ')
+#     if int(k[0])>len(r) or int(k[0])<0: return print("Invalid count")
+#     if k[1]=='odd': m=[i for i in r if i%2==1]
+#     else: m=[i for i in r if i%2==0]
+#     m=m[-int(k[0])::1]
+#     return print(m)
+#
+# a=input()
+# # 'exchange': exchange,
+# d={'exchange': exchange, "max": maxeo, "min": mineo, "first": first, "last": last}
+# while a!='end':
+#     a=a.split(' ',1)
+#     d[a[0]](l,a[1])
+#     a=input()
+#
+# print(l)
 
 # # 5.	Tic-Tac-Toe
 #
@@ -70,12 +106,12 @@ print(l)
 # a= input().split(' ')
 # b=int(input())
 # b -= 1 # pop automatically skips the dead guy
-# idx = b
+# idx = b%len(a)
 # k=[]
 # while len(a) > 0:
-#     k.append(a.pop(idx)) # kill prisoner at idx
+#     k.append(int(a.pop(idx))) # kill prisoner at idx
 #     if len(a)>0: idx = (idx + b) % len(a)
-# print(k)
+# print(str(k).replace(" ", ""))
 
 
 
@@ -104,13 +140,18 @@ print(l)
 #     del b[sum(a[i])%len(b)]
 # print(t)
 
-# # 1.	Zeros to Back
+# 1.	Zeros to Back
 # a=input()
-# c=a.count('0')
+# k=[]
+# c=0
 # l=a.split(', ')
 # l=[int(i) for i in l]
 # while 0 in l:
 #     l.remove(0)
+#     c+=1
+# # for i in range(len(l)):
+# #     if l[i]!='0': k.append(l[i])
+# # m=[int(x) for x in (k+c*['0'])]
 # print(l+c*[0])
 
 # import re
@@ -147,7 +188,7 @@ print(l)
 #             exit()
 # print(f'Day completed!\nCoins: {m}\nEnergy: {e}')
 
-# # Hello, France
+# Hello, France
 # a= input().split('|')
 # b=float(input())
 # a=list(map(lambda x: x.split('->'),a))
@@ -159,18 +200,18 @@ print(l)
 #     p=float(a[i][1])
 #     if p> d[t]: continue
 #     if p<=b:
-#         k.append(str(round(p*1.4,2)))
+#         k.append(round(p*1.4,2))
 #         b-=p
 #         o+=p
-#
-# print(' '.join(k))
-# print(f'Profit: {o*0.4:.2f}')
+# for i in range(len(k)):
+#     print(f'{k[i]:.2f}',end=' ')
+# print(f'\nProfit: {o*0.4:.2f}')
 # if (o*1.4+b)>=150:
 #     print("Hello, France!")
 # else:
 #     print("Not enough money.")
 
-# Seize the Fire
+# # Seize the Fire
 # a=input().split('#')
 # b=int(input())
 # e=0
@@ -184,10 +225,10 @@ print(l)
 #         e+=0.25*int(a[i][1])
 #         t.append(int(a[i][1]))
 #
-# print('Cells:\n')
+# print('Cells:')
 # for i in t:
-#     print(f' - {i}\n')
-# print(f'Effort: {e:.2f}\n')
+#     print(f' - {i}')
+# print(f'Effort: {e:.2f}')
 # print(f'Total Fire: {sum(t)}')
 
 
@@ -197,7 +238,7 @@ print(l)
 # while b!="No Money" :
 #     b=b.split(' ')
 #     if b[0]=='OutOfStock':a=list(map(lambda x:x.replace(b[1],'None'),a))
-#     if b[0]=='Required' and int(b[2])<len(a): a[int(b[2])]=b[1]
+#     if b[0]=='Required' and 0<=int(b[2])<len(a): a[int(b[2])]=b[1]
 #     if b[0]=='JustInCase': a[-1]=b[1]
 #     b=input()
 # l=[i for i in a if i!='None']
@@ -209,7 +250,8 @@ print(l)
 # l=[eval(x) for x in a.split(' ')]
 # for i in range(b):
 #     l.remove(min(l))
-# print(l)
+# l=[str(x) for x in l]
+# print(', '.join(l))
 
 # a=input()
 # b=int(input())
@@ -230,7 +272,7 @@ print(l)
 #     begger_list[i%b]+=int(a[i])
 # print(begger_list)
 
-
+#
 # a= input()
 # b=int(input())
 # l=[eval(i) for i in a.split(', ')]
@@ -240,10 +282,15 @@ print(l)
 # print(L)
 
 # a=input()
-# s= set(a.split(' '))
-#
-# print(f"Team A - {11-''.join(s).count('A')}; Team B - {11-''.join(s).count('B')}")
-# if ''.join(s).count('A')>4 or ''.join(s).count('B')>4: print("Game was terminated")
+# a=list(set(a.split(' ')))
+# ac=0
+# bc=0
+# for i in range(len(a)):
+#     if a[i][0]=='A': ac+=1
+#     else :bc+=1
+#     if ac>4 or bc>4 : break
+# print(f"Team A - {11-ac}; Team B - {11-bc}")
+# if ac>4 or bc>4 : print("Game was terminated")
 
 # a,b = int(input()), int(input())
 # l=[]
