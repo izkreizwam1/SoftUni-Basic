@@ -1,13 +1,13 @@
-# 5.	Multiplication Sign
-l=[int(input()),int(input()),int(input())]
-x=True
-for i in l:
-    if bool(i)==False:
-        print('zero')
-        exit()
-    if '-' in str(i): x= not x
-if x : print('positive')
-else:print('negative')
+# # 5.	Multiplication Sign
+# l=[int(input()),int(input()),int(input())]
+# x=True
+# for i in l:
+#     if bool(i)==False:
+#         print('zero')
+#         exit()
+#     if '-' in str(i): x= not x
+# if x : print('positive')
+# else:print('negative')
 
 # # 4.	Tribonacci Sequence
 # a=int(input())-2
