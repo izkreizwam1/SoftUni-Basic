@@ -1,30 +1,107 @@
-# 9.	*Anonymous Threat
-a=input().split(' ')
-def merge(a,start,end):
-    if start>=len(a): return a
-    if end>len(a): end=len(a)
-    end+=1
-    b=[''.join(a[start:end])]
-    return a[0:start]+b+a[end:]
+# # SoftUni Course Planning
+# a= input().split(', ')
+#
+# def check(a,title):
+#     if title in a: return True
+#     else: return False
+#
+#
+# while True:
+#     command=input()
+#     if command=="course start" : break
+#     command=command.split(':')
+#     if command[0]=='Add':
+#         if check(a,command[1])==False:
+#             a.append(command[1])
+#         # print(a)
+#     elif command[0]=='Insert':
+#         if check(a, command[1])==False:
+#             a.insert(int(command[2]),command[1])
+#         # print(a)
+#     elif command[0]=='Remove':
+#         if check(a, command[1]):
+#             a.remove(command[1])
+#         if check(a, command[1]+'-Exercise'):
+#             a.remove(command[1]+'-Exercise')
+#         # print(a)
+#     elif command[0]=='Swap':
+#         if check(a, command[1]) and check(a,command[2]):
+#             slot1, slot2 = a.index(command[1]), a.index(command[2])
+#             a[slot1], a[slot2] = a[slot2], a[slot1]
+#             # print('swap main= ',a)
+#         else: continue
+#         if check(a, command[1] + '-Exercise'):
+#             slot3=a.index(command[1] + '-Exercise')
+#             ex_to_move= a.pop(slot3)        #test here
+#             a.insert(slot2+1, ex_to_move)
+#             # print('swap ex 1=',a)
+#         if check(a, command[2] + '-Exercise'):
+#             slot4 = a.index(command[2] + '-Exercise')
+#             ex_to_move2 = a.pop(slot4)
+#             a.insert(slot1+1, ex_to_move2)
+#     #         # print('swap ex 2=',a)
+#         # print(a)
+#     elif command[0]=='Exercise':
+#         if check(a, command[1]) :
+#             if check(a, command[1]+'-Exercise') :
+#                 break
+#             else:
+#                 a.insert(a.index(command[1])+1, command[1]+'-Exercise')
+#         else:
+#             a.extend([command[1]])
+#             # print('add course=',a)
+#             a.extend([command[1] + '-Exercise'])
+#         #     print('add ex=',a)
+#
+# for i in range(len(a)):
+#     print(f'{i+1}.{a[i]}')
 
-def divide(a,idx,parts):
-    if idx>len(a)-1 : return a
-    num_sym = len(a[idx]) // parts
+# # 10.	*Pokemon Don't Go
+# import random
+# input_list=[int(x) for x in input().split(' ')]
+# total=0
+# while len(input_list)>0:
+#     value=random.randint(0,9)
+#     idx=int(input())
+#     if idx<0:
+#         value=input_list[0]
+#         input_list[0]=input_list[-1]
+#     elif idx>=len(input_list):
+#         value=input_list[-1]
+#         input_list[-1]=input_list[0]
+#     else:
+#         value=input_list.pop(idx)
+#     total+=value
+#     input_list = [(lambda x: x + value if x <= value else x - value)(x) for x in input_list]
+# print(total)
 
-    if len(a[idx])%parts==0 :
-        b = [a[idx][i:i + num_sym] for i in range(0, len(a[idx]), num_sym)]
-        return a[:idx]+b+a[idx+1:]
-    else:
-        b = [a[idx][i:i + num_sym] for i in range(0, len(a[idx]), num_sym)]
-        b=b[:-2]+[b[-2]+b[-1]]
-        return a[:idx] + b + a[idx + 1:]
-command=input()
-while command!='3:1':
-    command=command.split(' ')
-    if command[0]=='merge': a=merge(a,int(command[1]),int(command[2]))
-    if command[0]=='divide': a=divide(a,int(command[1]),int(command[2]))
-    command=input()
-print(' '.join(a))
+# # 9.	*Anonymous Threat
+# a=input().split(' ')
+# def merge(a,start,end):
+#     if start>=len(a): return a
+#     if start<0 : start=0
+#     if end>len(a): end=len(a)
+#     end+=1
+#     b=[''.join(a[start:end])]
+#     return a[:start]+b+a[end:]
+#
+# def divide(a,idx,parts):
+#     num_sym = len(a[idx]) // parts
+#
+#     if len(a[idx])%parts==0 :
+#         b = [a[idx][i:i + num_sym] for i in range(0, len(a[idx]), num_sym)]
+#         return a[:idx]+b+a[idx+1:]
+#     else:
+#         b = [a[idx][i:i + num_sym] for i in range(0, len(a[idx]), num_sym)]
+#         b=b[:-2]+[b[-2]+b[-1]]
+#         return a[:idx] + b + a[idx + 1:]
+# command=input()
+# while command!='3:1':
+#     command=command.split(' ')
+#     if command[0]=='merge': a=merge(a,int(command[1]),int(command[2]))
+#     if command[0]=='divide': a=divide(a,int(command[1]),int(command[2]))
+#     command=input()
+# print(' '.join(a))
 
 
 
