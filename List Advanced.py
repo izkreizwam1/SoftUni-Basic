@@ -1,3 +1,200 @@
+# # Dots
+# from collections import Counter
+#
+# n=int(input())
+# dot=[]
+# t_final=0
+#
+#
+# for i in range(n):
+#     dot.append(list((lambda x: 1 if x=='.' else 0)(x) for x in input().split(' ')))
+# # print(dot)
+# def find_dots(dot,i):
+#     flag=False
+#     broi=0
+#     pos=[]
+#     pos_reserve=[]
+#     if 1 in dot[i]:
+#         pos = [dot[i].index(1)]
+#         pos_reserve=[]
+#         broi+=1
+#         dot[i][pos[-1]]=0
+#         for j in range(pos[-1]+1,len(dot[i])):
+#             if dot[i][j]==1 and flag==False:
+#                 pos.append(j)
+#                 broi += 1
+#                 dot[i][pos[-1]] = 0
+#
+#             elif dot[i][j]==0 :
+#                 flag=True
+#             elif dot[i][j]==1 and flag:
+#                 pos_reserve.append(j)
+#
+#
+#     return broi,pos,pos_reserve
+#
+# def add_reserve(dot,i,reserve_old,l):
+#     c=list((Counter(reserve_old) & Counter(l)).elements())
+#     for j in range(len(c)):
+#         dot[i-1][c[j]]=0
+#     return len(c)
+#
+#
+#
+# def check_sum():
+#     i = 0
+#     t=0
+#     l_old=[]
+#     reserve_old=[]
+#     while i <n:
+#         num,l,reserve = find_dots(dot,i)
+#         if bool(l) and not bool(l_old):
+#             t+=num
+#             l_old=l
+#             if reserve : reserve_old = reserve
+#
+#         elif bool(l) and bool(l_old):
+#             if any(i in l_old for i in l):
+#                 t+=num
+#                 l_old=l
+#                 # print(dot,reserve,reserve_old)
+#                 if any(i in reserve_old for i in l):
+#                     t+= add_reserve(dot,i,reserve_old,l)
+#
+#                     reserve_old=reserve
+#                 else:
+#                     reserve_old=reserve
+#
+#             else:
+#                 break
+#         elif not bool(l) and bool(l_old):
+#             break
+#         elif not bool(l) and not bool(l_old):
+#             pass
+#         i+=1
+#     return t
+#
+#
+# for i in range(n):
+#     if sum(dot[i])>0:
+#         t_final=max(t_final,check_sum())
+# print(t_final)
+
+
+
+
+
+# # Battle Ships
+# n=int(input())
+# mapi=[]
+# t=0
+# for i in range(n):
+#     mapi.append(list((lambda x: int(x))(x) for x in input().split(' ')))
+#
+# hit=input().split(' ')
+# for i in range(len(hit)):
+#     hit[i]=hit[i].split('-')
+#     hit[i]=list((map(lambda j: int(j),hit[i])))
+#
+# for i in range(len(hit)):
+#     if mapi[hit[i][0]][hit[i][1]]>0:
+#         mapi[hit[i][0]][hit[i][1]]-=1
+#         if mapi[hit[i][0]][hit[i][1]]==0 : t+=1#
+# print(t)
+
+# Kate's Way Out ******************************************************************************************************************
+# def check_path(kate,l1pos,l2pos):
+#     kate=[pos]
+#     for i in range(len(l1pos)):
+#         if (min(kate)-1) in l1pos: kate.append(min(kate)-1)
+#         if (max(kate) + 1) in l1pos: kate.append(max(kate) + 1)
+#     l2pos=list(filter(None, [(lambda x: x if x in kate else None)(x) for x in l2pos]))
+#     return l2pos
+#
+# def move(k,l2pos):
+#     steps=max([(lambda x: abs(k-x))(x) for x in l2pos])
+#     for i in l2pos:
+#         if abs(k-i)==steps: k=i
+#     return [k,steps+1]
+#
+#
+# a=int(input())
+# maze=[[] for i in range(a)]
+# trip=0
+# trip_down=0
+# trip_up=0
+#
+# k=[]
+# end_down=True
+# end_up=True
+# end=0
+# p=[[] for i in range(a)]
+# # find free spaces in maze and put in p and locate k
+# for i in range(a):
+#     maze[i].extend([j for j in input()])
+#     for j in range(len(maze[i])):
+#         if maze[i][j]=='k':
+#             k=[i,j]
+#         if maze[i][j]==' ':
+#             p[i].extend([j])
+#
+# #  check for a way out
+# for i in range(k[0],len(maze)):
+#     if ' ' not in maze[i]:
+#         end_down=False
+# for i in range(k[0]-1,0-1,-1):
+#     if ' ' not in maze[i]:
+#         end_up=False
+#
+#
+# # way down
+# if end_down:
+#     row = k[0]
+#     pos = k[1]
+#     for i in range(row,len(p)-1):
+#         next_row=check_path(k,p[i],p[i+1])
+#         pos, steps = move(pos,next_row)
+#         trip_down+=steps
+#         print(steps)
+# # way up
+# if end_up:
+#     row = k[0]
+#     pos = k[1]
+#     for i in range(row-1,-1,-1):
+#         next_row=check_path(pos,p[i+1],p[i])
+#         pos, steps = move(pos,next_row)
+#         trip_up+=steps
+#         print(steps)
+# if end_up==end_down==False: print('Kate cannot get out')
+# else :
+#     trip=max(trip_up,trip_down)
+#     print(f'Kate got out in {trip+1} moves')
+
+
+# # 2.	Take/Skip Rope
+# a=[i for i in input()]
+# n_list= [str(i) for i in range(10)]
+# num=list(filter(lambda x: type(x)==int,[(lambda x: int(x) if x in n_list else x)(x) for x in a]))
+# chars=list(filter(lambda x: type(x)!=int,[(lambda x: int(x) if x in n_list else x)(x) for x in a]))
+# n_take, n_skip = [num[i] for i in range(0,len(num),2)],[num[i] for i in range(1,len(num),2)]
+# l=[]
+# for i in range(len(n_take)):
+#     l.extend(chars[:n_take[i]])
+#     del chars[:n_skip[i]+n_take[i]]
+# print(''.join(l))
+
+# # 1.	Social Distribution
+# a=[int(x) for x in input().split(', ')]
+# b=int(input())
+# for i in range(len(a)):
+#     a_sorted = sorted(a)
+#     a_max_idx = a.index(a_sorted[-1])
+#     if a[i]<b and a[a_max_idx]>=2*b-a[i]:
+#         a[a_max_idx] -= (b - a[i])
+#         a[i]+=b-a[i]
+# if min(a)<b: print('No equal distribution possible')
+# else: print(a)
+
 # # SoftUni Course Planning
 # a= input().split(', ')
 #
@@ -44,7 +241,7 @@
 #     elif command[0]=='Exercise':
 #         if check(a, command[1]) :
 #             if check(a, command[1]+'-Exercise') :
-#                 break
+#                 continue
 #             else:
 #                 a.insert(a.index(command[1])+1, command[1]+'-Exercise')
 #         else:
