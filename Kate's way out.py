@@ -71,9 +71,3 @@ while k_idx[0]<=(n-1):
 
 if  not flag:
     print(f"Kate got out in {max(steps,steps_old)+1} moves")
-
-
-
-
-
-
