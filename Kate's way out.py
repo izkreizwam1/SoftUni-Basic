@@ -37,7 +37,7 @@ def move(k,s,v,maze,m):
         elif all(i in v for i in list(filter(lambda x : bool(x),s))): # if all available spaces are already visited
             maze[k[0]][k[1]]='@'                  #Kate marks the space with @ BECAUSE this position doesnt lead to any new spaces or exits
             k = v[-2]                       # Kate moves one step back
-            del v[-1]                       # Kate removes the market with @ space from the visited spaces as
+            del v[-1]                       # Kate removes the marked with @ space from the visited spaces as
                             # it is clearly a dead end and from now on will be part of the Maze walls
             m-=1            # as Kate moves back, we decrease the steps
             return k,v,m
