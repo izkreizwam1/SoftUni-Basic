@@ -1,4 +1,104 @@
+# class Movie:
+#     __watched_movies = 0
+#
+#     def __init__(self,name,director):
+#         self.name=name
+#         self.director=director
+#         self.watched=False
+#
+#
+#     def change_name(self,new_name):
+#         self.name=new_name
+#     def change_director(self,new_diector):
+#         self.director=new_diector
+#     def watch(self):
+#         if not self.watched:
+#             self.watched=True
+#             Movie.__watched_movies+=1
+#     def __repr__(self):
+#         return f"Movie name: {self.name}; Movie director: {self.director}. Total watched movies: {Movie.__watched_movies}"
+#
+# first_movie = Movie("Inception", "Christopher Nolan")
+# second_movie = Movie("The Matrix", "The Wachowskis")
+# third_movie = Movie("The Predator", "Shane Black")
+# first_movie.change_director("Me")
+# third_movie.change_name("My Movie")
+# first_movie.watch()
+# third_movie.watch()
+# first_movie.watch()
+# print(first_movie)
+# print(second_movie)
+# print(third_movie)
 
+# class Vehicle:
+#     def __init__(self,type,model,price):
+#         self.type=type
+#         self.model=model
+#         self.price=price
+#         self.owner=None
+#     def buy(self,money,name):
+#         if self.owner==None and money>=self.price:
+#             self.owner=name
+#             return f"Successfully bought a {self.type}. Change: {(money - self.price):.2f}"
+#         elif money<self.price: return ("Sorry, not enough money")
+#         elif self.owner!=None: return ("Car already sold")
+#     def sell(self):
+#         if self.owner is None:
+#             return "Vehicle has no owner"
+#         self.owner=None
+#
+#     def __repr__(self):
+#         if self.owner is None:
+#             return f"{self.model} {self.type} is on sale: {self.price}"
+#
+#         return f"{self.model} {self.type} is owned by: {self.owner}"
+#
+#
+# vehicle_type = "car"
+# model = "BMW"
+# price = 30000
+# vehicle = Vehicle(vehicle_type, model, price)
+# print(vehicle.buy(15000, "Peter"))
+# print(vehicle.buy(35000, "George"))
+# print(vehicle)
+# vehicle.sell()
+# print(vehicle)
+
+
+# class Article:
+#     def __init__(self,title,content, author):
+#         self.title=title
+#         self.content=content
+#         self.author=author
+#     def edit(self,new_content):
+#         self.content=new_content
+#     def change_author(self,new_author):
+#         self.author=new_author
+#     def rename(self,new_name):
+#         self.title=new_name
+#     def __repr__(self):
+#         return f"{self.title} - {self.content}: {self.author}"
+
+
+# class Inventory:
+#     def __init__(self,capacity):
+#         self.__capacity=capacity
+#         self.items=[]
+#     def add_item(self,item):
+#         if len(self.items)<self.__capacity:
+#             self.items.append(item)
+#         else: return "not enough room in the inventory"
+#     def get_capacity(self):
+#         return self.__capacity
+#     def __repr__(self):
+#         return f"Items: {', '.join(self.items)}.\nCapacity left: {self.__capacity-len(self.items)}"
+#
+# inventory = Inventory(2)
+# inventory.add_item("potion")
+# inventory.add_item("sword")
+# print(inventory.add_item("bottle"))
+# print(inventory.get_capacity())
+# print(inventory)
 
 # class Class:
 #     __students_count = 22
