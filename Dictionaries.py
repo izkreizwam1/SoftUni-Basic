@@ -1,3 +1,230 @@
+# 02. Judge
+d_con={}
+d_user={}
+
+def check_in_d(i,d):
+    if i in d: return True
+    else: return False
+ while True:
+    a=input()
+    if a=="no more time": break
+    user, con, point= a.split(' -> ')
+    if check_in_d(con,d_con):
+        if check_in_d(user,d_con[con]):
+            d_con[con][user]=max(d_con[con][user],int(point))
+        else: d_con[con][user]=int(point)
+    else:
+        d_con[con]={user: int(point)}
+
+    if check_in_d(user,d_user):
+        if check_in_d(con,d_user[user]):
+            d_user[user][con]=max(d_user[user][con],int(point))
+        else: d_user[user][con]=int(point)
+    else:
+        d_user[user]={con: int(point)}
+
+for i in d_con:
+    print(f"{i}: {len(d_con[i])} participants")
+    n=0
+    d_c_s=sorted(d_con[i].items(),key =lambda x: x[1],reverse=True)
+
+    for j in d_c_s:
+        n+=1
+        print(f'{n}. {j[0]} <::> {j[1]}')
+print('Individual standings:')
+d_p={}
+for i in d_user:
+    d_p[i]=sum(d_user[i].values())
+d_p = sorted(d_p.items(), key=lambda x: x[1], reverse=True)
+n1=0
+for i in d_p:
+    n1+=1
+    print(f'{n1}. {i[0]} -> {i[1]}')
+
+
+
+# # 01. Ranking
+# d_contest={}
+# d_user={}
+#
+# while True:
+#     a=input()
+#     if a=="end of contests": break
+#     d_contest[a.split(':')[0]]=a.split(':')[1]
+#
+# while True:
+#     a=input()
+#     if a == "end of submissions": break
+#     a=a.split('=>')
+#     if d_contest.get(a[0])==a[1]:
+#         if a[2] in d_user:
+#             try:
+#                 d_user[a[2]][a[0]]=max(d_user[a[2]].get(a[0]),int(a[3]))
+#             except:
+#                 d_user[a[2]][a[0]]=int(a[3])
+#         else:
+#             d_user[a[2]]={}
+#             d_user[a[2]][a[0]]=int(a[3])
+#
+# max=0
+# max_u=''
+# for i in d_user:
+#     k=sum(d_user[i].values())
+#     if max<k:
+#         max=k
+#         max_u=i
+# print(f"Best candidate is {max_u} with total {max} points.\nRanking:")
+# names= sorted(list(d_user.keys()))
+# for i in names:
+#     print(i)
+#     sorted_d= sorted(d_user[i].items(), key=lambda x: x[1],reverse=True)
+#     for j in sorted_d:
+#        print(f'#  {j[0]} -> {j[1]}')
+
+# # 11.	*SoftUni Exam Results
+# d={}
+# dl={}
+#
+# while True:
+#     a=input()
+#     if a=="exam finished": break
+#     a=a.split('-')
+#     if a[1]=='banned':
+#         for k,v in d[a[0]].items():
+#             d[a[0]][k]=None
+#         continue
+#     u,l,s=a
+#     dl[l]=(lambda x : dl[x]+1 if bool(dl.get(x)) else 1)(l)
+#     s=int(s)
+#     if u not in d: d[u]={}
+#     if bool(d[u].get(l)): d[u][l]=max(d[u][l],s)
+#     else: d[u][l]=s
+#
+# print('Results:')
+# for i in d:
+#     for j in d[i]:
+#         if d[i][j]!=None: print(f'{i} | {d[i][j]}')
+#
+# print('Submissions:')
+# for k,v in dl.items():
+#     print(f'{k} - {v}')
+
+
+
+# 10.	*Force Book
+# d={}
+# def check(user,force):
+#     for i in d:
+#         if user in d[i]:
+#             return 0
+#     if force in d:
+#         return 1
+#     else: return 2
+# def find_u(user):
+#     for i in d:
+#         if user in d[i]:
+#             return [i,d[i].index(user)]
+#
+# while True:
+#     # print(d)
+#     a=input()
+#     if '|' in a : c='|'
+#     elif '->' in a : c='->'
+#     a=a.split(f' {c} ')
+#     if a[0]=="Lumpawaroo": break
+#
+#     if c=='|':
+#         u,f =a[1],a[0]
+#         if check(u,f)==0: continue
+#         elif check(u,f)==1: d[f]=d[f]+[u]
+#         elif check(u,f)==2: d[f]=[u]
+#
+#     elif c=='->':
+#         u,f = a[0],a[1]
+#         if check(u, f) == 0:
+#             del d[find_u(u)[0]][find_u(u)[1]]
+#
+#
+#         if check(u, f) == 1:
+#             d[f] = d[f] + [u]
+#             print(f"{u} joins the {f} side!")
+#         elif check(u, f) == 2:
+#             d[f] = [u]
+#             print(f"{u} joins the {f} side!")
+# for i in d:
+#     if len(d[i])>0:
+#         print(f"Side: {i}, Members: {len(d[i])}")
+#         for j in d[i]:
+#             print(f"! {j}")
+
+
+# # 1.	Company Users
+# d={}
+# while True:
+#     a=input()
+#     if a=='End': break
+#     a=a.split(' -> ')
+#     if a[0] in d and a[1] in d[a[0]]:
+#         continue
+#     else:
+#         if not bool(d.get(a[0])) : d[a[0]]=[a[1]]
+#         else: d[a[0]]+=[a[1]]
+# for i in d:
+#     print(f"{i}")
+#     for j in d[i]:
+#         print(f"-- {j}")
+
+# # 09. Student Academy
+# d={}
+# def check(i):
+#     return +sum(d[i])/len(d[i])>=4.5
+# n= int(input())
+# for i in range(n):
+#     a=input()
+#     b=float(input())
+#     if a not in d: d[a]=[b]
+#     else: d[a]+=[b]
+#
+# # d=dict(map(lambda i,j: (i,j), a,b))
+# s=dict(map(lambda i :  (i,sum(d[i])/len(d[i])) if check(i) else (0,1),d))
+# # k=dict(map(lambda i :  (i,sum(d[i])/len(d[i]) if check(i) else None),d))
+# if s.get(0): del s[0]
+# for i in s:
+#     print(f'{i} -> {s[i]:.2f}')
+
+# # 08. Courses
+# d={}
+# while True:
+#     a=input()
+#     if a=='end': break
+#     a, b=a.split(' : ')
+#     if not bool(d.get(a)) : d[a]=[b]
+#     else: d[a]=d[a]+[b]
+# for i in d:
+#     print(f"{i}: {len(d[i])}")
+#     for j in d[i]:
+#         print(f"-- {j}")
+
+# # 07. SoftUni Parking
+# n= int(input())
+# d={}
+# for i in range(n):
+#     a=input().split(' ')
+#     comand,user= a[0],a[1]
+#     if comand=='register':
+#         num=a[2]
+#         if user in d: print(f"ERROR: already registered with plate number {num}")
+#         else:
+#             d[user]=num
+#             print(f"{user} registered {num} successfully")
+#     elif comand=='unregister':
+#         if user in d:
+#             print(f"{user} unregistered successfully")
+#             del d[user]
+#         else: print(f"ERROR: user {user} not found")
+# for i in d:
+#     print(f"{i} => {d[i]}")
+
 # # 6.	Orders
 # d={}
 # while True:
@@ -54,7 +281,7 @@
 # #  Capitals
 # a=input().split(', ')
 # b=input().split(', ')
-# # d=dict(map(lambda i,j: (i,j), a,b))
+# d=dict(map(lambda i,j: (i,j), a,b))
 # d=dict(zip(a,b))
 # for i in d:
 #     print(f'{i} -> {d[i]}')
