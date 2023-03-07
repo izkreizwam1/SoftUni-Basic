@@ -1,47 +1,110 @@
-# 02. Judge
-d_con={}
-d_user={}
+# #  Dragon Army
+# d={}
+# n= int(input())
+# for i in range(n):
+#     a=input().split(' ')
+#     t,name,dam,h,armor = a
+#     if dam=='null': dam=45
+#     if h=='null': h=250
+#     if armor=='null': armor=10
+#     dam=int(dam)
+#     h=int(h)
+#     armor=int(armor)
+#     d[t]=d.get(t,{})
+#     d[t][name]=[dam,h,armor]
+#
+# for i in d:
+#     av=[0,0,0]
+#     for j in d[i]:
+#         av=[sum(x) for x in zip(av,d[i][j])]
+#     print(f"{i}::({av[0]/len(d[i]):.2f}/{av[1]/len(d[i]):.2f}/{av[2]/len(d[i]):.2f})")
+#     for j in sorted(d[i]):
+#         print(f"-{j} -> damage: {d[i][j][0]}, health: {d[i][j][1]}, armor: {d[i][j][2]}")
 
-def check_in_d(i,d):
-    if i in d: return True
-    else: return False
- while True:
-    a=input()
-    if a=="no more time": break
-    user, con, point= a.split(' -> ')
-    if check_in_d(con,d_con):
-        if check_in_d(user,d_con[con]):
-            d_con[con][user]=max(d_con[con][user],int(point))
-        else: d_con[con][user]=int(point)
-    else:
-        d_con[con]={user: int(point)}
+# # 4.	Snow White
+# d={}
+# d1={}
+# while True:
+#     a=input()
+#     if a=="Once upon a time": break
+#     name,hat,size = a.split(' <:> ')
+#     size=int(size)
+#
+#     d[hat]=d.get(hat, {})
+#     d[hat][name]=d[hat].get(name,0)
+#     d[hat][name]=max(d[hat][name],size)
+# l=[]
+# for k,v in d.items():
+#     for k1,v1 in v.items():
+#         l.append([k,len(v),k1,v1])
+#
+# l.sort(key= lambda x: (-x[3],-x[1]))
+# for i in l:
+#     print(f"({i[0]}) {i[2]} <-> {i[3]}")
 
-    if check_in_d(user,d_user):
-        if check_in_d(con,d_user[user]):
-            d_user[user][con]=max(d_user[user][con],int(point))
-        else: d_user[user][con]=int(point)
-    else:
-        d_user[user]={con: int(point)}
+# # 3.	MOBA Challenger
+# d={}
+# d_new={}
+# while True:
+#     a=input()
+#     if a=="Season end": break
+#     elif ' -> ' in a:
+#         p,pos,s=a.split(' -> ')
+#         s=int(s)
+#         d[p]=d.get(p,{})
+#         d[p][pos]=d[p].get(pos,0)
+#         if s>d[p][pos] : d[p][pos]=s
+#     elif ' vs ' in a:
+#         u1,u2 = a.split(' vs ')
+#         if d.get(u1) == None or d.get(u2) == None: continue
+#         if any(i in d.get(u1) for i in d.get(u2)) :
+#             if sum(d[u1].values())<sum(d[u2].values()) : del d[u1]
+#             elif sum(d[u2].values())<sum(d[u1].values()) : del d[u2]
+# for i in d:
+#     d_new[i]=sum(d[i].values())
+# for k,v in sorted(d_new.items(), key=lambda x : (-x[1],x[0])):
+#     print(f"{k}: {v} skill")
+#     for k1,v1 in sorted(d[k].items(), key=  lambda x: (-x[1],x[0])):
+#         print(f'- {k1} <::> {v1}')
 
-for i in d_con:
-    print(f"{i}: {len(d_con[i])} participants")
-    n=0
-    d_c_s=sorted(d_con[i].items(),key =lambda x: x[1],reverse=True)
-
-    for j in d_c_s:
-        n+=1
-        print(f'{n}. {j[0]} <::> {j[1]}')
-print('Individual standings:')
-d_p={}
-for i in d_user:
-    d_p[i]=sum(d_user[i].values())
-d_p = sorted(d_p.items(), key=lambda x: x[1], reverse=True)
-n1=0
-for i in d_p:
-    n1+=1
-    print(f'{n1}. {i[0]} -> {i[1]}')
-
-
+# # 02. Judge
+# d_con={}
+# d_user={}
+# def sort_key(item):
+#     key, value = item
+#     return value, -ord(key[0])
+#
+# while True:
+#     a=input()
+#     if a=="no more time": break
+#     user, con, point= a.split(' -> ')
+#     d_con[con]=d_con.get(con,{})
+#     d_con[con][user]=d_con[con].get(user,0)
+#     if int(point)>d_con[con][user] : d_con[con][user]=int(point)
+#     d_user[user]=d_user.get(user,{})
+#     d_user[user][con]=d_user[user].get(con,0)
+#     if int(point)> d_user[user][con]: d_user[user][con]=int(point)
+#
+# for i in d_con:
+#     print(f"{i}: {len(d_con[i])} participants")
+#     n=1
+#     for key,val in sorted(d_con[i].items(), key=lambda x: (-x[1], x[0])):
+#         print(f"{n}. {key} <::> {val}")
+#         n += 1
+#     # d_c_s=sorted(d_con[i].items(),key =lambda x: x[1],reverse=True)
+#     # d_c_s = sorted(d_con[i].items(), key=sort_key, reverse=True)
+#     # for j in d_c_s:
+#     #     n+=1
+#     #     print(f'{n}. {j[0]} <::> {j[1]}')
+#
+# print('Individual standings:')
+# d_p={}
+# for i in d_user:
+#     d_p[i]=sum(d_user[i].values())
+# n1=1
+# for key, value in sorted(d_p.items(), key=lambda x: (-x[1], x[0])):
+#     print(f"{n1}. {key} -> {value}")
+#     n1 += 1
 
 # # 01. Ranking
 # d_contest={}

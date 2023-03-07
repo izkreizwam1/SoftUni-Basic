@@ -1,13 +1,14 @@
-# string_list = ['0', '0']
-# int_list = list(map(lambda x: int(x), string_list))
-# print(int_list)
-# hit=[['0', '0']]
-# hit[0]=list(map(lambda x: int(x),hit[0]))
-# print(hit[0])
+average_per_colour = {}
+for colour, name in d.items():
+    avg_for_colour = []
+    for dragon, info in name.items():
+        avg_for_colour.append(info)
+        avg_result = [sum(i) / len(avg_for_colour) for i in zip(*avg_for_colour)]
+    average_per_colour[colour] = avg_result
 
-for i in range(5):
-    # hit[i]=hit[i].split('-')
-    # print(hit[i])
-    k=['0', '0']
-    k=list((map(lambda j: int(j),['0', '0'])))
-    print(k)
+sorted_dictionary = {k: {x: y for x, y in sorted(v.items())} for k, v in d.items()}
+
+for colour, average in average_per_colour.items():
+    print(f"{colour}::({average[0]:.2f}/{average[1]:.2f}/{average[2]:.2f})")
+    for name, info in sorted_dictionary[colour].items():
+        print(f"-{name} -> damage: {info[0]}, health: {info[1]}, armor: {info[2]}")
