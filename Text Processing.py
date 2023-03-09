@@ -1,18 +1,176 @@
-# Letters Change Numbers
-a= input().split(' ')
-t=0
-for i in a:
-    f=ord(i[0].lower())-96
-    s=ord(i[-1].lower())-96
-    k=int(i[1:-2])
-    if i[0].isupper():
-        k=k/f
-    else: k=k*f
-    if i[-1].isupper():
-        k-=s
-    else:k+=s
-    t+=k
-print(f'{t:.2f}')
+# # 5.	HTML
+# a=input()
+# l=[]
+# while True:
+#     b=input()
+#     if b=="end of comments" : break
+#     l.append(b)
+# print(f'<h1>\n\t{a}\n</h1>')
+# print(f'<article>\n\t{l[0]}\n</article>')
+# for i in range(1,len(l)):
+#     print(f'<div>\n\t{l[i]}\n</div>')
+
+# 04. Morse Code Translator
+# a=[(lambda x: x.split())(x) for x in input().split(' | ')]
+# d={}
+# b='A	.- \
+# C	-.-. \
+# E	. \
+# G	--. \
+# I	.. \
+# K	-.- \
+# M	-- \
+# O	--- \
+# Q	--.- \
+# S	... \
+# U	..- \
+# W	.-- \
+# Y	-.-- \
+# B	-... \
+# D	-.. \
+# F	..-. \
+# H	.... \
+# J	.--- \
+# L	.-.. \
+# N	-. \
+# P	.--. \
+# R	.-. \
+# T	- \
+# V	...- \
+# X	-..- \
+# Z	--..'
+# b=b.replace('\n',' ').split()
+# for i in range(0,len(b),2):
+#     d[b[i+1]]=b[i]
+# # print(a)
+# for i in a:
+#     t=''
+#     for j in i:
+#         t+=d[j]
+#     print(t,end=' ')
+
+# # 3.	Treasure Finder
+# key=[(lambda x: int(x))(x) for x in input().split()]
+#
+# while True:
+#     a=input()
+#     if a=='find': break
+#     b=''
+#     for i in range(1,len(a)+1):
+#         k=key[i%len(key)-1]
+#         b+=chr(ord(a[i-1])-k)
+#     t=b.split('&')[1]
+#
+#     c=b.split('&')[2].split('<')[1].split('>')[0]
+#     print(f"Found {t} at {c}")
+
+# # 2.	ASCII Sumator
+# s1=input()
+# s2=input()
+# a=list(input())
+# a=[(lambda x: ord(x) if ord(s1)<ord(x)<ord(s2) else 0)(x) for x in a]
+# print(sum(a))
+
+# # 1.	Extract Person Information
+# n=int(input())
+# for i in range(n):
+#     a=input()
+#     na=False
+#     ag=False
+#     for k in a:
+#
+#         if k=='@':
+#             na=True
+#             name=''
+#             continue
+#         elif k=='#':
+#             ag=True
+#             age=''
+#             continue
+#         elif k=='|':
+#             na=False
+#             continue
+#         elif k=='*':
+#             ag=False
+#             continue
+#         elif na: name+=k
+#         elif ag: age+=k
+#     print(f"{name} is {age} years old.")
+
+# #  Winning Ticket
+# a=input().split(',')
+# a=[(lambda x: x.strip())(x) for x in a]
+# l=['@', '#', '$' , '^' ]
+#
+# def check(x):
+#     for i in l:
+#         if 6*i in x:
+#             l1=[(lambda a: a*i in x)(a) for a in range(10,5,-1)]
+#             return i,10-l1.index(True)
+#     return '',0
+# for i in a:
+#     if len(i)!=20 :
+#         print("invalid ticket")
+#         continue
+#     x1,x2=i[:10],i[10:]
+#     x1_s,x1_n=check(x1)
+#     x2_s,x2_n=check(x2)
+#     if x1_n==0 or x2_n==0 :
+#         print(f"ticket \"{i}\" - no match")
+#         continue
+#     if x1_s==x2_s and x1_n==x2_n and x1_n==10:
+#         print(f"ticket \"{i}\" - {x1_n}{x1_s} Jackpot!")
+#         continue
+#     elif x1_s==x2_s and min(x1_n,x2_n)>=6:
+#         print(f"ticket \"{i}\" - {min(x1_n,x2_n)}{x1_s}")
+#         continue
+
+# Rage Quit
+# a=input()
+# flag=[False,False]
+# word=''
+# num=''
+# t=''
+#
+# for i in range(len(a)):
+#     if flag[0] and (flag[1] or i==(len(a)-1) )and (not a[i].isdigit() or i==(len(a)-1)):
+#         if i==(len(a)-1): num+=a[i]
+#         t=t+(word*int(num)).upper()
+#         word=''
+#         num=''
+#         flag=[False,False]
+#     if not a[i].isdigit():
+#         word+=a[i]
+#         flag[0]=True
+#     else:
+#         num+=a[i]
+#         flag[1]=True
+# ll=''
+# for i in a.upper():
+#     if not i.isdigit():ll+=i
+# l1=len(set(ll))
+# print(f"Unique symbols used: {l1}")
+# # print(set(ll))
+# print(t)
+
+# # Letters Change Numbers
+# a= input().strip()
+# a=a.split()
+# # a=list(filter(lambda x: x!='',a))
+# t=0
+# # print(a)
+# for i in a:
+#     first_letter=ord(i[0].lower())-96
+#     last_letter=ord(i[-1].lower())-96
+#     number=int(i[1:-1])
+#     if i[0].isupper():
+#         number= number / first_letter
+#     else: number= number * first_letter
+#     if i[-1].isupper():
+#         number-=last_letter
+#     else:number+=last_letter
+#     t+=number
+# print(f'{t:.2f}')
 
 # # String Explosion
 # a=input()
