@@ -1,14 +1,57 @@
-average_per_colour = {}
-for colour, name in d.items():
-    avg_for_colour = []
-    for dragon, info in name.items():
-        avg_for_colour.append(info)
-        avg_result = [sum(i) / len(avg_for_colour) for i in zip(*avg_for_colour)]
-    average_per_colour[colour] = avg_result
+import re
 
-sorted_dictionary = {k: {x: y for x, y in sorted(v.items())} for k, v in d.items()}
+html = input()
 
-for colour, average in average_per_colour.items():
-    print(f"{colour}::({average[0]:.2f}/{average[1]:.2f}/{average[2]:.2f})")
-    for name, info in sorted_dictionary[colour].items():
-        print(f"-{name} -> damage: {info[0]}, health: {info[1]}, armor: {info[2]}")
+title_pattern = r'<title>(.+)<\/title>'
+body_pattern = r'<body>(.+)<\/body>'
+
+counter = 0
+
+clean_body = ''
+
+title_match = re.search(title_pattern, html)
+body_match = re.search(body_pattern, html)
+
+body = body_match.group(1)
+
+if '\\n' in body:
+    body = body.replace('\\n', '')
+
+while counter != len(body):
+    if body[counter] == '<':
+        for i in range(counter, len(body)):
+            if body[i] == '>':
+                counter += (i - counter) + 1
+                break
+    else:
+        clean_body += body[counter]
+        counter += 1
+
+print(f'Title: {title_match.group(1)}')
+print(f'Content: {clean_body}')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import re
+
+html_content = input()
+pattern = re.compile(r"(?:<title>)(?P<title_html>.+)(?:</title>).*(?:<body>)(?P<body_html>.+)(?:</body>)")
+m_space, tabs_n, between = r"[ ]+", r"\\n|\\t", r"<[^>]*>"
+result = re.finditer(pattern, html_content)
+for show in result:
+    print(f'Title: {re.sub(m_space, " ", re.sub(tabs_n, "", re.sub(between, "", show["title_html"])))}')
+    print(f'Content: {re.sub(m_space, " ", re.sub(tabs_n, "", re.sub(between, "", show["body_html"])))}')
