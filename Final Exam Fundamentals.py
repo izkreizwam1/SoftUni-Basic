@@ -1,3 +1,76 @@
+# Need for Speed III
+# n= int(input())
+# d={}
+# for i in range(n):
+#     a=input().split('|')
+#     d[a[0]]=[int(a[1]), int(a[2])]
+#
+# while True:
+#     b=input()
+#     if b=='Stop': break
+#     b=b.split(' : ')
+#     car=b[1]
+#     if b[0]=='Drive':
+#         if d[car][1]<int(b[3]) :
+#             print("Not enough fuel to make that ride")
+#
+#         else:
+#             d[car][0]+=int(b[2])
+#             d[car][1]-=int(b[3])
+#             print(f"{car} driven for {b[2]} kilometers. {b[3]} liters of fuel consumed.")
+#             if d[car][0]>=100000:
+#                 del d[car]
+#                 print(f"Time to sell the {car}!")
+#     elif b[0]=='Refuel':
+#         f=min(75-d[car][1], int(b[2]))
+#         d[car][1]=min(75, d[car][1]+int(b[2]))
+#         print(f"{car} refueled with {f} liters")
+#     elif b[0]=='Revert':
+#         d[car][0]-=int(b[2])
+#         if d[car][0]<10000:
+#             d[car][0]=10000
+#             continue
+#         print(f"{car} mileage decreased by {b[2]} kilometers")
+# for i in d:
+#     print(f"{i} -> Mileage: {d[i][0]} kms, Fuel in the tank: {d[i][1]} lt.")
+
+
+# # Mirror words
+# import re
+# a=input()
+# l=[]
+# r=r'(@|#)(?P<word>[A-Za-z]{3,})\1\1(?P<word2>[A-Za-z]{3,})\1'
+# t=re.findall(r,a)
+# pairs=len(t)
+# for i in t:
+#     if i[1]==i[2][::-1]:
+#         l.append(f'{i[1]} <=> {i[2]}')
+# if pairs:
+#     print(f"{pairs} word pairs found!")
+# else: print("No word pairs found!")
+# if l :
+#     print(f"The mirror words are:\n {', '.join(l)}")
+# else: print("No mirror words!")
+
+# # Secret Chat
+# a=input()
+# while True:
+#     b=input()
+#     if b=='Reveal': break
+#     b=b.split(':|:')
+#     if b[0]=='InsertSpace':
+#         a=a[:int(b[1])]+' '+a[int(b[1]):]
+#         print(a)
+#     elif b[0]=='Reverse':
+#         if b[1] in a:
+#             a=a.replace(b[1],'',1)+b[1][len(b[1])::-1]
+#             print(a)
+#         else: print('error')
+#     elif b[0]=='ChangeAll':
+#         a=a.replace(b[1],b[2])
+#         print(a)
+# print(f"You have a new text message: {a}")
+
 # Plant Discovery
 # def rate(p,r,di):
 #     if p in di:
