@@ -1,3 +1,87 @@
+# # Heroes of Code and Logic VII
+# n= int(input())
+# d={}
+# for i in range(n):
+#     name,hp,mp =input().split()
+#     d[name]=[int(hp),int(mp)]
+#
+# while True:
+#     b=input()
+#     if b=='End': break
+#     command, name , *info = [int(x) if x.isdigit() else x for x in b.split(' - ')]
+#     if command=='CastSpell':
+#         mp, spell = info
+#         if mp<=d[name][1]:
+#             d[name][1]-=mp
+#             print(f"{name} has successfully cast {spell} and now has {d[name][1]} MP!")
+#         else: print(f"{name} does not have enough MP to cast {spell}!")
+#
+#     elif command=='TakeDamage':
+#         dam, att = info
+#         d[name][0]-=dam
+#         if d[name][0]>0:
+#             print(f"{name} was hit for {dam} HP by {att} and now has {d[name][0]} HP left!")
+#         else:
+#             del d[name]
+#             print(f"{name} has been killed by {att}!")
+#     elif command=='Recharge':
+#         re=info[0]
+#         if d[name][1]+re>200:
+#             re=200-d[name][1]
+#             d[name][1]=200
+#         else:  d[name][1]+=re
+#         print(f"{name} recharged for {re} MP!")
+#     elif command=='Heal':
+#         re=info[0]
+#         if d[name][0] + re > 100:
+#             re = 100 - d[name][0]
+#             d[name][0] = 100
+#         else:
+#             d[name][0] += re
+#         print(f"{name} healed for {re} HP!")
+# for i in d:
+#     print(f'{i}\n  HP: {d[i][0]}\n  MP: {d[i][1]}')
+
+
+# # Fancy Barcodes
+# import re
+#
+# n=int(input())
+# r=r'@#+([A-Z][a-zA-Z0-9]{4,}[A-Z])@#+'
+#
+# for i in range(n):
+#     a=input()
+#     found_barcode=re.findall(r,a)
+#
+#     if found_barcode :
+#         group=''
+#         for j in found_barcode[0]:
+#             if j.isdigit():
+#                 group+=j
+#         if group=='': group='00'
+#         print(f'Product group: {group}')
+#     else:print("Invalid barcode")
+
+# Password Reset
+# a=input()
+#
+# while True:
+#     b=input()
+#     if b=='Done': break
+#     b=b.split()
+#     if b[0]=='TakeOdd':
+#         a=a[1::2]
+#         print(a)
+#     elif b[0]=='Cut':
+#         a=a[:int(b[1])]+a[int(b[1])+int(b[2]):]
+#         print(a)
+#     elif b[0]=='Substitute':
+#         if b[1]in a:
+#             a=a.replace(b[1],b[2])
+#             print(a)
+#         else: print("Nothing to replace!")
+# print(f"Your password is: {a}")
+
 # Need for Speed III
 # n= int(input())
 # d={}
