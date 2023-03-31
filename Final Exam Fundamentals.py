@@ -1,3 +1,88 @@
+# # P!rates
+#
+# d={}
+# while True:
+#     a=input()
+#     if a=='Sail': break
+#     c,p,g=[int(x) if x.isdigit() else x for x in a.split('||')]
+#     if c in d:
+#         d[c][0]+=p
+#         d[c][1]+=g
+#     else:
+#         d[c]=[p,g]
+# while True:
+#     b=input()
+#     if b=='End': break
+#     command,c,*info=[int(x) if x.isdigit() else x for x in b.split('=>')]
+#     if command=='Plunder':
+#         p,g=info
+#         d[c][0]-=p
+#         d[c][1]-=g
+#         print(f"{c} plundered! {g} gold stolen, {p} citizens killed.")
+#         if d[c][0]==0 or d[c][1]==0:
+#             del d[c]
+#             print(f"{c} has been wiped off the map!")
+#
+#     elif command=='Prosper':
+#         info=int(info[0])
+#         if info<0 :
+#             print("Gold added cannot be a negative number!" )
+#         else:
+#             d[c][1]+=info
+#             print(f"{info} gold added to the city treasury. {c} now has {d[c][1]} gold.")
+# if len(d)==0 :
+#     print("Ahoy, Captain! All targets have been plundered and destroyed!")
+# else:
+#     print(f"Ahoy, Captain! There are {len(d)} wealthy settlements to go to:")
+#     for i in d:
+#         print(f'{i} -> Population: {d[i][0]} citizens, Gold: {d[i][1]} kg')
+
+# # Emoji Detector
+# import re
+#
+# a= input()
+# r=r'(\*\*|::)(?P<word>[A-Z][a-z]{2,})\1'
+# th=1
+# for i in a:
+#     if i.isdigit(): th*=int(i)
+#
+# print(f"Cool threshold: {th}")
+# t=re.finditer(r,a)
+# t1=re.findall(r,a)
+# print(f"{len(t1)} emojis found in the text. The cool ones are:")
+#
+# for i in t1:
+#     k=0
+#     for j in i[1]:
+#        k+=ord(j)
+#     if k>=th: print(i[0]+i[1]+i[0])
+
+# Activation Keys
+# a= input()
+#
+# while True:
+#     b=input()
+#     if b=='Generate': break
+#     b=b.split('>>>')
+#     if b[0]=='Contains':
+#         if b[1] in a :
+#             print(f"{a} contains {b[1]}")
+#         else: print("Substring not found!")
+#     elif b[0]=='Flip':
+#         k=''
+#         b2=int(b[2])
+#         b3=int(b[3])
+#         for i in a[b2:b3]:
+#             if b[1]=='Lower': k+=i.lower()
+#             elif b[1]=='Upper': k+=i.upper()
+#             else:k+=i
+#         a=a[:b2]+k+a[b3:]
+#         print(a)
+#     elif b[0]=='Slice':
+#         a=a[:int(b[1])]+a[int(b[2]):]
+#         print(a)
+# print(f"Your activation key is: {a}")
+
 # # Heroes of Code and Logic VII
 # n= int(input())
 # d={}
